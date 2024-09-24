@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task List</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      .task {
+        margin-bottom: 10px;
+      }
+      .completed {
+        text-decoration: line-through;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Task List</h1>
+    <ul>
+      {% for task in tasks %}
+      <li class="task">
+        <input
+          type="checkbox"
+          {%
+          if
+          task.Completed
+          %}checked{%
+          endif
+          %}
+          onclick="toggleComplete(this)"
+        />
+        <strong>{{ task.title }}</strong>: {{ task.description }}
+      </li>
+      {% endfor %}
+    </ul>
+
+    <script>
+      function toggleComplete(checkbox) {
+        if (checkbox.checked) {
+          checkbox.parentElement.classList.add("completed");
+        } else {
+          checkbox.parentElement.classList.remove("completed");
+        }
+      }
+    </script>
+  </body>
+</html>
